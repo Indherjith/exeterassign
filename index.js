@@ -1,12 +1,31 @@
 const fs = require('fs');
-const csv = require('csv-parser');
+const csv = require('csv-parser')
 
 const startTime = new Date().getTime();
   
+// Read the English Text file
 let text = fs.readFileSync('t8.shakespeare.txt', 'utf8').toString();
 text = text.toLowerCase();
+
+// Read the Words List 
 let words = fs.readFileSync('find_words.txt', 'utf8').split("\n");
+
+// Creating Object
 let obj = {};
+
+// Reading Dictionary first way
+// let dictionary = fs.readFileSync('french_dictionary.csv','utf-8').toString();
+// dictionary=dictionary.split("\n")
+// for(let i=0;i<dictionary.length;i++)
+// {
+//     let ARR = dictionary[i].split(',');
+//     // console.log(ARR);
+//     obj[ARR[0]] = ARR[1];
+// }
+// RAO();
+// output();
+
+// Reading Dictionary Second Way
 
 fs.createReadStream('french_dictionary.csv').pipe(csv()).on('data', function(data){
 	let Arr = [];
@@ -20,6 +39,7 @@ fs.createReadStream('french_dictionary.csv').pipe(csv()).on('data', function(dat
     RAO();
     output();
 });
+
 
  
  function RAO(){
